@@ -1,0 +1,33 @@
+<div class="container py-4">
+  <div class="row">
+      <h2>Mes {{labels[entity]}}</h2>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <a class="btn btn-success float-right m-2" routerLink="/add/{{entity}}">Ajouter</a>
+      <table class="table">
+        <thead>
+          <tr>
+            <th *ngFor="let h of header" (click)="sortBy(h)">
+              <span style="cursor: pointer" [className]="isSortedBy(h) ? 'text-primary' : ''">
+                {{h}}
+                <i *ngIf="sortType[h] === 'up'" class="fas fa-sort-up"></i>
+                <i *ngIf="sortType[h] === 'down'" class="fas fa-sort-down"></i>
+              </span>
+
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let c of content">
+          <td *ngFor="let h of header">
+            <a href="#" routerLink="/detail/{{entity}}/{{c.id}}">
+              {{c[h]}}
+            </a>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

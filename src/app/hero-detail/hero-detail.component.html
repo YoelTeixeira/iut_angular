@@ -1,0 +1,30 @@
+<div class="container py-4" *ngIf="hero">
+  <div class="row">
+    <div class="col-12">
+      <h2>Détails de {{hero.name | uppercase}}</h2>
+
+      <div class="form-group">
+        <label for="inputNom">Nom</label>
+        <input [(ngModel)]="hero.name" type="text" class="form-control" id="inputNom" aria-describedby="inputNom" placeholder="Superman">
+      </div>
+
+      <small>Points restants: {{hero.maxPoints - hero.getTotalPoints()}}</small>
+      <div class="my-2" *ngFor="let c of caracteristics">
+        <label>{{c.label}}:
+          <button class="btn mx-3" (click)="removePoint(c.property)">-</button>
+          <span>{{hero[c.property]}}</span>
+          <button class="btn mx-3" (click)="addPoint(c.property)">+</button>
+        </label>
+      </div>
+
+      <h3>Equipement</h3>
+      <select class="form-control" [(ngModel)]="hero.weapon">
+        <option *ngFor="let w of weapons" [value]="w.id">{{w.name}}</option>
+      </select>
+
+      <p>{{error}}</p>
+      <button class="btn btn-danger float-left" (click)="goBack()">Précédent</button>
+      <button class="btn btn-success float-right" (click)="editHero()">{{hero.id === null || hero.id === undefined ? 'Ajouter' : 'Modifier'}}</button>
+    </div>
+  </div>
+</div>

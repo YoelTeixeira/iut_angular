@@ -1,0 +1,17 @@
+<div class="container py-4" *ngIf="weapon">
+  <h2>Détails de l'arme : {{weapon.name | uppercase}}</h2>
+  <div class="form-group">
+    <label for="weaponName">Nom</label>
+    <input [(ngModel)]="weapon.name" class="form-control" id="weaponName" placeholder="Nom"/>
+  </div>
+
+  <p>Somme caractéristiques: {{getSum()}}</p>
+  <div *ngFor="let c of caracteristics">
+    <label>{{c.label}}:
+      <mat-slider thumbLabel color="primary" min="-5" max="5" [(ngModel)]="weapon[c.property]"></mat-slider>
+    </label>
+  </div>
+  <p>{{error}}</p>
+  <button class="btn btn-danger float-left" (click)="goBack()">Précédent</button>
+  <button class="btn btn-success float-right" (click)="editWeapon()">{{weapon.id === null || weapon.id === undefined ? "Ajouter" : "Modifier"}}</button>
+</div>
